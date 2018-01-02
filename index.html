@@ -1395,7 +1395,9 @@
             "zuerich",
             "zw"
         ];
+
         function update(e) {
+            window.location.hash = '#' + e.value;
             var result = document.getElementById("result");
             result.innerHTML = "";
             var text = e.value;
@@ -1411,6 +1413,13 @@
             var a = text.substr(0, dotpos), b = text.substr(dotpos, length), c = text.substr(dotpos + length)
             obj.innerHTML += "<la>" + a + "</la><lb>." + b + "</lb><lc>/" + c + "</lc><br/>";
         }
+
+        window.addEventListener("load", function () {
+            var q = document.getElementById("query");
+            q.value = window.location.hash.substr(1);
+            q.selectionStart = q.selectionEnd = q.value.length;
+            update(q);
+        });
     </script>
     <style>
         body {
@@ -1440,7 +1449,7 @@
     </style>
 </head>
 <body>
-<input type="text" onkeyup="update(this);" onfocus="this.select();update(this);" autofocus/>
+<input type="text" onkeyup="update(this);" id="query" autofocus/>
 <div id="result"></div>
 </body>
 </html>
