@@ -1397,7 +1397,7 @@
         ];
 
         function update(e) {
-            window.location.hash = '#' + e.value;
+            window.location.hash = '#' + btoa(e.value);
             var result = document.getElementById("result");
             result.innerHTML = "";
             var text = e.value;
@@ -1416,7 +1416,7 @@
 
         window.addEventListener("load", function () {
             var q = document.getElementById("query");
-            q.value = window.location.hash.substr(1);
+            q.value = atob(window.location.hash.substr(1));
             q.selectionStart = q.selectionEnd = q.value.length;
             update(q);
         });
