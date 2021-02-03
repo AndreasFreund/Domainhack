@@ -1357,7 +1357,7 @@
         ];
 
         function update(e) {
-            window.location.hash = '#' + btoa(e.value);
+            history.replaceState({},'','#' + btoa(e.value));
             var result = document.getElementById("result");
             result.innerHTML = "";
             var text = e.value;
